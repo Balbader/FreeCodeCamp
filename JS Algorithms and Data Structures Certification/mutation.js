@@ -8,3 +8,14 @@ does not contain a y.
 Lastly, ["Alien", "line"], should return true because all of the letters
 in line are present in Alien.
 */
+function mutation(arr) {
+    let test = arr[1].toLowerCase();
+    let target = arr[0].toLowerCase();
+    for (let i = 0; i < test.length; i++) {
+        if (target.indexOf(test[i]) < 0) return false;
+    }
+    return true;
+}
+
+console.log(mutation(["hello", "hey"])); // => false
+console.log(mutation(["hello", "hell"])); // => true
