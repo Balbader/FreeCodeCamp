@@ -3,7 +3,7 @@
 function spinalCase(str) {
     return str
         .split(/\s|_|(?=[A-Z])/) // split str if one of the three condition is encountered: [\s] [_] [?=A-Z]
-        .join('-'
+        .join('-')
         .toLowerCase();
 }
 
