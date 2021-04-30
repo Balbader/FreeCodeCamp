@@ -10,31 +10,47 @@ object from the array (the first argument), because it contains the name
 and its value, that was passed on as the second argument.
 */
 
-/*
-function whatIsInAName(collection, source) {
-    var arr = [];
-    // Only change code below this line
-
-    // Only change code above this line
-    console.log(arr);
-}
-*/
-
 
 function whatIsInAName(collection, source) {
-  const srcKeys = Object.keys(source);
-
-  // filter the collection
-  return collection.filter(function(obj) {
-    for (var i = 0; i < srcKeys.length; i++) {
-      if (
-        !obj.hasOwnProperty(srcKeys[i]) ||
-        obj[srcKeys[i]] !== source[srcKeys[i]]
-      ) {
-        return false;
-      }
-    }
-    return true;
-  });
+    // turn source object into an array of its own properties
+    const srcKeys = Object.keys(source);
+    // filter the collection to fetch the matching element to the source obj
+    return collection.filter(function(obj) {
+        for (let i = 0; i < srcKeys.length; i++) {
+            if (
+                !obj.hasOwnProperty(srcKeys[i]) ||
+                obj[srcKeys[i]] !== source[srcKeys[i]]
+            ) {
+                return false;
+            }
+        }
+        return true;
+    });
 }
-console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
+
+
+// Variation 1
+function whatIsInAName(collection, source) {
+    var srcKeys = Object.keys(source);
+    return collection.filter(function(obj) {
+        return srcKeys.every(function(key) {
+            return obj.hasOwnProperty(key) && obj[key] === source[key];
+        });
+    });
+}
+
+
+// Variation 2
+function whatIsInAName(collection, source) {
+    var srcKeys = Object.keys(source);
+    // filter the collection
+    return collection.filter(function(obj) {
+        return srcKeys
+            .map(function(key) {
+                return obj.hasOwnProperty(key) && obj[key] === source[key];
+            })
+            .reduce(function(a, b) {
+                return a && b;
+            });
+    });
+}
