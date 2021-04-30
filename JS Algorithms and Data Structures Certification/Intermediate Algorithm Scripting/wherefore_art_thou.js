@@ -10,14 +10,31 @@ object from the array (the first argument), because it contains the name
 and its value, that was passed on as the second argument.
 */
 
-
+/*
 function whatIsInAName(collection, source) {
     var arr = [];
     // Only change code below this line
 
-
     // Only change code above this line
-    return arr;
+    console.log(arr);
 }
+*/
 
-whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+
+function whatIsInAName(collection, source) {
+  const srcKeys = Object.keys(source);
+
+  // filter the collection
+  return collection.filter(function(obj) {
+    for (var i = 0; i < srcKeys.length; i++) {
+      if (
+        !obj.hasOwnProperty(srcKeys[i]) ||
+        obj[srcKeys[i]] !== source[srcKeys[i]]
+      ) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));
