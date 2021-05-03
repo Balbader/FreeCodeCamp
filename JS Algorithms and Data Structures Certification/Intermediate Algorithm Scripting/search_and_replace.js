@@ -55,3 +55,7 @@ function myReplace(str, before, after) {
         // join modified targetArr to string and return
         return targetArr.join("");
     }
+
+    // replace "before" with "after" with "before"-casing
+    return str.replace(before, applyCasing(before, after));
+}
