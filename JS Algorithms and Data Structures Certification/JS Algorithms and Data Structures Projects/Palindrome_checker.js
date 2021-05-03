@@ -14,12 +14,11 @@ We'll also pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3
 */
 
 function palindrome(str) {
-    let newStr = str.replace(/[^a-zA-Z]/g, '').toLowerCase();
+    let newStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     let revStr = newStr.split('').reverse().join('');
-    console.log(newStr);
-    console.log(revStr);
-    //return (newStr === revStr);
+    return (newStr === revStr);
 }
 
 console.log(palindrome("My age is 0, 0 si ega ym."));
 console.log(palindrome("1 eye for of 1 eye."));
+console.log(palindrome("Nope"));
